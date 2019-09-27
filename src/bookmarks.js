@@ -1,5 +1,6 @@
 const express = require('express');
 const uuid = require('uuid/v4');
+var {isURL} = require('validator');
 const logger = require('./logger');
 const {bookmarks} = require('./store');
 const bookmarkRouter = express.Router();
@@ -17,20 +18,30 @@ bookmarkRouter
       logger.error('Title is required');
       return res
         .status(400)
-        .send('Invalid data');
+        .send('Title is required');
     }
         
     if (!url) {
       logger.error('Url is required');
       return res
         .status(400)
-        .send('Invalid data');
+        .send('Url is required');
     }
     if (!rating) {
       logger.error('Rating is required');
       return res
         .status(400)
-        .send('Invalid data');
+        .send('Rating is required');
+    }
+
+    if (!Number.isInteger(rating) || rating < 0 || rating > 5) {
+      logger.error(`Invalid rating '${rating}' supplied`);
+      return res.status(400).send('\'rating\' must be a number between 0 and 5');
+    }
+
+    if (!isURL(url)) {
+      logger.error(`Invalid url '${url}' supplied`);
+      return res.status(400).send('\'url\' must be a valid URL');
     }
     
     // get an id
