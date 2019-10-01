@@ -17,3 +17,7 @@
 {"message":"Rating is required","level":"error"}
 {"message":"Bookmark with id 80ad6379-a2cb-4956-aa11-f1444c07ced1 created","level":"info"}
 {"message":"Rating is required","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/","level":"error"}
